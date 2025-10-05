@@ -24,11 +24,10 @@ export const handelAction = (location, dataLang, setNameBgImg) => {
   return (dispatch) => {
     dispatch(sendRequest());
     WAxios.get(
-      "q=${location}&appid=35be6d8b7019818b202bdbee8afc4f35&units=metric&lang=${dataLang}"
+      `?q=${location}&appid=35be6d8b7019818b202bdbee8afc4f35&units=metric&lang=${dataLang}`
     )
       .then((res) => {
         dispatch(getData(res.data));
-        console.log(res);
 
         if (
           res.data.weather[0].main === "Clear" ||

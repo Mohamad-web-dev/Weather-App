@@ -19,10 +19,10 @@ const InfoPart = () => {
 
   return (
     <div className="infoPart h-100 py-5 px-5 d-flex flex-column justify-content-center gap-5">
-      <div className="form-part w-100">
+      <div className="form-part w-100 d-flex flex-column gap-3 align-items-start">
         <form
           onSubmit={handelSearch}
-          className="w-100 position-relative mb-3"
+          className="w-100 position-relative"
           action="#"
         >
           <input
