@@ -1,0 +1,10 @@
+{
+  "temp-max": "حداکثر دما",
+  "temp-main": "حداقل دما",
+  "humidity":"رطوبت",
+  "clouds":"ابرها",
+  "wind":"باد",
+  "search-location": "جستجو منطقه",
+  "weather-details" : "جزئیات آب و هوا",
+  "the location is false 404 ERROR" : "لوکیشن اشتباه است ارور 404"
+}
