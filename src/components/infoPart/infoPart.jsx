@@ -1,11 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { handelAction } from "../../redux/weather/weatherAction";
+import { useContext } from "react";
+import { MainContext } from "../context/mainContext";
 
-const InfoPart = ({nameLocation,setNameLocation, setNameBgImg }) => {
+const InfoPart = () => {
+  const { nameLocation, setNameLocation, setNameBgImg } =
+    useContext(MainContext);
   const { t, i18n } = useTranslation();
   const { data } = useSelector((state) => state);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handelSearch = (e) => {
     e.preventDefault();
@@ -32,7 +36,11 @@ const InfoPart = ({nameLocation,setNameLocation, setNameBgImg }) => {
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
-        {data.error !== ""? (<span className="text-danger text-center">{t("the location is false 404 ERROR")}</span>) :null}
+        {data.error !== "" ? (
+          <span className="text-danger text-center">
+            {t("the location is false 404 ERROR")}
+          </span>
+        ) : null}
       </div>
       <div className="info-part d-flex flex-column gap-4">
         <div className="title h-auto">

@@ -13,12 +13,12 @@ import {
   handelAction,
   sendRequest,
 } from "../redux/weather/weatherAction";
+import { MainContext } from "./context/mainContext";
 
 function App() {
   const [direction, setDirection] = useState("rtl");
   const [nameBgImg, setNameBgImg] = useState("");
-  const [nameLocation,setNameLocation] = useState("")
-
+  const [nameLocation, setNameLocation] = useState("");
 
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
@@ -27,7 +27,7 @@ function App() {
     if (i18n.language === "en") {
       i18n.changeLanguage("fa");
       setDirection("rtl");
-      localStorage.setItem("lang", JSON.stringify("fa") );
+      localStorage.setItem("lang", JSON.stringify("fa"));
     } else {
       i18n.changeLanguage("en");
       setDirection("ltr");
@@ -61,8 +61,17 @@ function App() {
         src={`./public/images/${nameBgImg}.jpg`}
         alt=""
       />
-      <MainPart  handelChangeLang={handelChangeLang} />
-      <InfoPart nameLocation={nameLocation} setNameLocation={setNameLocation} setNameBgImg={setNameBgImg} />
+      <MainContext.Provider
+        value={{
+          handelChangeLang,
+          nameLocation,
+          setNameLocation,
+          setNameBgImg,
+        }}
+      >
+        <MainPart />
+        <InfoPart />
+      </MainContext.Provider>
     </div>
   );
 }

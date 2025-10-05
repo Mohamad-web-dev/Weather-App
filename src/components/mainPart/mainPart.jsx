@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { MainContext } from "../context/mainContext";
 
-const MainPart = ({ handelChangeLang }) => {
+const MainPart = () => {
+  const {handelChangeLang} = useContext(MainContext)
   const {i18n} = useTranslation()
   const { data } = useSelector((state) => state);
+
 
   return (
     <div className="main-part-container h-100 d-flex flex-column justify-content-between">
