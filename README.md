@@ -1,4 +1,4 @@
-# React + Vite
+# weather app (react)
 
 <h1>خوش آمدید به این پرژه</h1>
 
