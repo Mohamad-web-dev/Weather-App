@@ -1,6 +1,14 @@
-import { applyMiddleware, createStore } from "redux";
 import weatherReduce from "./weather/weatherReducer";
-import { thunk } from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
+import { weatherGenerate } from "./weather/sagaGenerator";
+import { configureStore } from "@reduxjs/toolkit";
 
 
-export const store = createStore(weatherReduce,applyMiddleware(thunk))
+const sagaMiddleware = createSagaMiddleware()
+
+export const store = configureStore({
+    reducer:weatherReduce,
+    middleware:(getMiddleware)=> getMiddleware({thunk : false}).concat(sagaMiddleware)
+})
+
+sagaMiddleware.run(weatherGenerate)

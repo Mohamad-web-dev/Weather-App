@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { handelAction } from "../../redux/weather/weatherAction";
 import { useContext } from "react";
 import { MainContext } from "../context/mainContext";
+import { sendRequest } from "../../redux/weather/weatherAction";
 
 const InfoPart = () => {
   const { nameLocation, setNameLocation, setNameBgImg } =
@@ -10,11 +10,12 @@ const InfoPart = () => {
   const { t, i18n } = useTranslation();
   const { data } = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  
   const handelSearch = (e) => {
     e.preventDefault();
     const dataLang = i18n.language;
-    dispatch(handelAction(nameLocation, dataLang, setNameBgImg));
+    // dispatch(handelAction(nameLocation, dataLang, setNameBgImg));
+    dispatch(sendRequest(nameLocation, dataLang, setNameBgImg))
   };
 
   return (

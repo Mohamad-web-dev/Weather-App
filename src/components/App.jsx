@@ -5,14 +5,8 @@ import InfoPart from "./infoPart/infoPart";
 import { useEffect, useState } from "react";
 import "../i18n";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getData,
-  getError,
-  handelAction,
-  sendRequest,
-} from "../redux/weather/weatherAction";
+import {sendRequest,} from "../redux/weather/weatherAction";
 import { MainContext } from "./context/mainContext";
 
 function App() {
@@ -47,7 +41,8 @@ function App() {
 
   useEffect(() => {
     const dataLang = i18n.language;
-    dispatch(handelAction(nameLocation, dataLang, setNameBgImg));
+    // dispatch(handelAction(nameLocation, dataLang, setNameBgImg));
+    dispatch(sendRequest(nameLocation, dataLang, setNameBgImg))
   }, [direction]);
 
   return (
