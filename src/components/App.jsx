@@ -49,7 +49,7 @@ function App() {
     <div
       className={` container-content ${nameBgImg} ${
         direction === "rtl" ? "d-rtl" : "d-ltr"
-      } d-flex flex-row align-items-center `}
+      } main-container d-flex flex-row align-items-center `}
     >
       <img
         className="bg-container"

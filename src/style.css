@@ -195,3 +195,29 @@ p{
   font-weight: 800;
   text-transform:uppercase;
 }
+
+@media (max-width : 750px) {
+  .main-container{
+    display: flex;
+    flex-direction: column !important;
+    align-items: stretch;
+    justify-content: start;
+  }
+  .main-part-container{
+    width: 100%;
+    align-items: center;
+    padding: 15px 20px;
+  }
+  .main-part-container .logo{
+    padding: 0 !important;
+  }
+  .infoPart{
+    width: 100%;
+  }
+  .info-weather{
+    width: 100% !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 25px !important;
+  }
+}
