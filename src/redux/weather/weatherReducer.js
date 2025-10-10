@@ -14,6 +14,7 @@ const weatherState = {
     error: "",
   },
   error: "",
+  nameI:""
 };
 
 const weatherReduce = (state = weatherState, action) => {
@@ -40,6 +41,7 @@ const weatherReduce = (state = weatherState, action) => {
           wind: action.payload.wind.speed,
           error:""
         },
+        nameI: action.payloadImage
       };
     case "GET_ERROR":
       return {

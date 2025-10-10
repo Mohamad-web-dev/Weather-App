@@ -1,6 +1,6 @@
 import weatherReduce from "./weather/weatherReducer";
 import createSagaMiddleware from "redux-saga";
-import { weatherGenerate } from "./weather/sagaGenerator";
+import { multipleGenerator } from "./weather/sagaGenerator";
 import { configureStore } from "@reduxjs/toolkit";
 
 
@@ -11,4 +11,4 @@ export const store = configureStore({
     middleware:(getMiddleware)=> getMiddleware({thunk : false}).concat(sagaMiddleware)
 })
 
-sagaMiddleware.run(weatherGenerate)
+sagaMiddleware.run(multipleGenerator)

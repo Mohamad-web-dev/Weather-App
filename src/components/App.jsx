@@ -11,9 +11,9 @@ import { MainContext } from "./context/mainContext";
 
 function App() {
   const [direction, setDirection] = useState("rtl");
-  const [nameBgImg, setNameBgImg] = useState("");
   const [nameLocation, setNameLocation] = useState("");
 
+  const {nameI} = useSelector(state=>state)
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
 
@@ -42,18 +42,18 @@ function App() {
   useEffect(() => {
     const dataLang = i18n.language;
     // dispatch(handelAction(nameLocation, dataLang, setNameBgImg));
-    dispatch(sendRequest(nameLocation, dataLang, setNameBgImg))
+    dispatch(sendRequest(nameLocation, dataLang))
   }, [direction]);
 
   return (
     <div
-      className={` container-content ${nameBgImg} ${
+      className={` container-content ${nameI} ${
         direction === "rtl" ? "d-rtl" : "d-ltr"
       } main-container d-flex flex-row align-items-center `}
     >
       <img
         className="bg-container"
-        src={`./public/images/${nameBgImg}.jpg`}
+        src={`./public/images/${nameI}.jpg`}
         alt=""
       />
       <MainContext.Provider
@@ -61,7 +61,7 @@ function App() {
           handelChangeLang,
           nameLocation,
           setNameLocation,
-          setNameBgImg,
+          nameI,
         }}
       >
         <MainPart />

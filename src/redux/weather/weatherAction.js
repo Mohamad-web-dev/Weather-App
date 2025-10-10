@@ -1,18 +1,22 @@
 import axios from "axios";
 import { WAxios } from "../../api/WAxios";
 
-export const sendRequest = (query,dataLang,setNameBgImg) => {
+export const sendRequest = (query,dataLang) => {
+  const nameBgI = ""
   return {
     type: "SEND_REQUEST",
     payloadQuery : query,
     payloadDataLang : dataLang,
-    payloadSetNI : setNameBgImg
+    payloadSetNI : nameBgI
   };
 };
-export const getData = (data) => {
+export const getData = (data,setNameI) => {
+  console.log(setNameI);
+  
   return {
     type: "GET_DATA",
     payload: data,
+    payloadImage : setNameI
   };
 };
 export const getError = (data) => {

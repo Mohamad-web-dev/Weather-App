@@ -1,6 +1,8 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { all, call, fork, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { WAxios } from "../../api/WAxios";
 import { getData, getError } from "./weatherAction";
+
+let currentBgImage = null
 
 const sendRequest = (dataLang, query) => {
   query = query || "london";
@@ -10,32 +12,34 @@ const sendRequest = (dataLang, query) => {
 };
 
 const handelSetBgName = (res, setNameBgImg) => {
-  console.log(res);
 
   if (
     res.data.weather[0].main === "Clear" ||
     res.data.weather[0].main === "Sunny"
   )
-    setNameBgImg("sunny-clear");
+  setNameBgImg="sunny-clear";
 
   if (
     res.data.weather[0].main === "Clouds" ||
     res.data.weather[0].main === "Thunderstorm"
   )
-    setNameBgImg("clouds-thunderstorm");
+   setNameBgImg="clouds-thunderstorm";
   if (
     res.data.weather[0].main === "Mist" ||
     res.data.weather[0].main === "Fog" ||
     res.data.weather[0].main === "Haze" ||
     res.data.weather[0].main === "Smoke"
   )
-    setNameBgImg("mist-fog-haze-smoke");
+   setNameBgImg="mist-fog-haze-smoke";
   if (
     res.data.weather[0].main === "Rain" ||
     res.data.weather[0].main === "Drizzle"
   )
-    setNameBgImg("rain-drizzle");
-  if (res.data.weather[0].main === "snow") setNameBgImg("snow");
+   setNameBgImg="rain-drizzle";
+  if (res.data.weather[0].main === "snow") setNameBgImg="snow";
+
+  currentBgImage = setNameBgImg
+
 };
 
 function* handelGetRequest(action) {
@@ -45,14 +49,28 @@ function* handelGetRequest(action) {
       action.payloadDataLang,
       action.payloadQuery
     );
-    yield put(getData(res.data));
-
+    console.log(res);
     yield handelSetBgName(res, action.payloadSetNI);
+    
+    yield put(getData(res.data,currentBgImage));
+
+        
+
   } catch (error) {
     yield put(getError(error.massage));
   }
 }
 
-export function* weatherGenerate() {
-  yield takeEvery("SEND_REQUEST", handelGetRequest);
+function* weatherGenerate() {
+  yield takeLatest("SEND_REQUEST", handelGetRequest);
+}
+
+
+export function* multipleGenerator (){
+  yield all([
+    fork(weatherGenerate)
+    ////// // another generator ....
+    //fork(...)
+    //fork(...)
+  ])
 }
