@@ -1,20 +1,21 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "../style.css";
-import MainPart from "./mainPart/mainPart";
-import InfoPart from "./infoPart/infoPart";
+import "./style.css";
+import MainPart from "./components/mainPart/mainPart";
+import InfoPart from "./components/infoPart/infoPart";
 import { useEffect, useState } from "react";
-import "../i18n";
+import "./i18n";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {sendRequest,} from "../redux/weather/weatherAction";
-import { MainContext } from "./context/mainContext";
+import {sendRequest,} from "./redux/weather/weatherAction";
+import { MainContext } from "./components/context/mainContext";
 
 function App() {
   const [direction, setDirection] = useState("rtl");
   const [nameLocation, setNameLocation] = useState("");
-
-  const {nameI} = useSelector(state=>state)
+  
+ const {nameI} = useSelector(state=>state)
   const dispatch = useDispatch();
+
   const { i18n } = useTranslation();
 
   const handelChangeLang = () => {
