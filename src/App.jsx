@@ -54,7 +54,7 @@ function App() {
     >
       <img
         className="bg-container"
-        src={`./public/images/${nameI}.jpg`}
+        src={`/images/${nameI}.jpg`}
         alt=""
       />
       <MainContext.Provider
