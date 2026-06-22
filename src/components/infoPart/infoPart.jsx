@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext } from "react";
 import { MainContext } from "../context/mainContext";
 import { sendRequest } from "../../redux/weather/weatherAction";
+import outline1 from "../../assets/outline1.svg"
+import outline2 from "../../assets/outline2.svg"
+import outline from "../../assets/outline.svg"
+import vector1 from "../../assets/Vector1.svg"
+import vector2 from "../../assets/Vector2.svg"
 
 const InfoPart = () => {
   const { nameLocation, setNameLocation, setNameBgImg } =
@@ -55,7 +60,7 @@ const InfoPart = () => {
               <div className="list-item-info d-flex gap-4">
                 <span>{`${Math.round(data.tempMax)}°`}</span>
                 <img
-                  src="./src/assets/Vector (1).svg"
+                  src={vector1}
                   width="12"
                   height="22"
                   alt=""
@@ -67,7 +72,7 @@ const InfoPart = () => {
               <div className="list-item-info d-flex gap-4">
                 <span>{`${Math.round(Number(data.tempMin))}°`}</span>
                 <img
-                  src="./src/assets/Vector (2).svg"
+                  src={vector2}
                   width="12"
                   height="22"
                   alt=""
@@ -79,7 +84,7 @@ const InfoPart = () => {
               <div className="list-item-info d-flex gap-4">
                 <span>{`${Math.round(Number(data.humidity))}%`}</span>
                 <img
-                  src="./src/assets/outline (2).svg"
+                  src={outline2}
                   width="12"
                   height="22"
                   alt=""
@@ -91,7 +96,7 @@ const InfoPart = () => {
               <div className="list-item-info d-flex gap-4">
                 <span>{`${Math.round(Number(data.clouds))}%`}</span>
                 <img
-                  src="./src/assets/outline.svg"
+                  src={outline}
                   width="12"
                   height="22"
                   alt=""
@@ -103,7 +108,7 @@ const InfoPart = () => {
               <div className="list-item-info d-flex gap-4">
                 <span>{`${Math.round(Number(data.wind))}km/h`}</span>
                 <img
-                  src="./src/assets/outline (1).svg"
+                  src={outline1}
                   width="12"
                   height="22"
                   alt=""
